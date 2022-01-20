@@ -9,7 +9,7 @@ export class QueryHelper{
         this.auth = auth;
     }
 
-  public async execute(query: String){
+  public async execute(query: string){
     console.log('\t\Query Helper: I\'m performing the execute().');
     let conn = this.auth.getConnection();
     let result = await conn.query(query);
