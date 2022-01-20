@@ -47,6 +47,7 @@
   "dependencies": {
     "@salesforce/dev-config": "1.4.1",
     "@salesforce/dev-scripts": "^2.0.0",
+    "@soft/authentication": "Salesforce-Open-Framework-Tooling/authentication#feature/test",
     "@types/chai": "^4.2.14",
     "@types/jsforce": "^1.9.38",
     "@types/mocha": "^8.0.3",
@@ -58,7 +59,6 @@
     "jsforce": "^1.10.0",
     "mocha": "^8.2.1",
     "ts-node": "^9.0.0",
-    "@soft/authentication": "Salesforce-Open-Framework-Tooling/authentication#feature/test",
     "typescript": "^4.5.4"
   }
 }
