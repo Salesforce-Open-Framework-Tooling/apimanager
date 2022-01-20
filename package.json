@@ -25,6 +25,7 @@
     "lint": "sf-lint",
     "prepack": "sf-build",
     "test": "mocha -r ts-node/register tests/**/*.test.ts",
+    "postinstall": "tsc --outDir ./lib",
     "coverage": "nyc -r lcov -e .ts -x \"*.test.ts\" npm run test"
   },
   "bugs": {
