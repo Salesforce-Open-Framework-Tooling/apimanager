@@ -11,11 +11,11 @@ export class ApiManager{
     this.queryHelper = new QueryHelper(auth);
   }
 
-  public async execute(instructions: QueryDefinition){
+  public async execute(instructions: QueryDefinition): Promise<Array<string>>{
     console.log('\t\tAPI Manager: query:' + JSON.stringify(instructions));
     switch(instructions.Type) { 
-      case Type.DESCRIBE: { 
-         return this.queryHelper.describe(instructions);
+      case Type.DESCRIBE_GLOBAL: { 
+         return this.queryHelper.describeGlobal();
          break; 
       }
       default: { 
@@ -29,6 +29,7 @@ export class ApiManager{
 
   public async describe(instructions: QueryDefinition){
     console.log('describe');
+
   }
 
   // public async query(query: String) : Object{

@@ -1,5 +1,5 @@
 import { Authentication } from "@soft/authentication";
-import { QueryDefinition, Type } from "./QueryDefinition";
+import { QueryDefinition } from "./QueryDefinition";
 
 export class QueryHelper{
     auth: Authentication;
@@ -12,6 +12,7 @@ export class QueryHelper{
   public async execute(query: string){
     console.log('\t\Query Helper: I\'m performing the execute().');
     let conn = this.auth.getConnection();
+    // let result = '';
     let result = await conn.query(query);
     return result;
   }
@@ -27,26 +28,29 @@ export class QueryHelper{
     // });
   }
 
-  public async describeGlobal(){
+  public async describeGlobal(): Promise<Array<string>>{
     console.log('describe global');
     let objects = [];
 
-    this.auth.getConnection().describeGlobal().then(res => {
-      for (let i = 0; i < res.sobjects.length; i++) {
-        let object = res.sobjects[i];
+    let res = await this.auth.getConnection().describeGlobal();
 
-        // If the sObject is a real custom object
-        if (object.custom && (object.name.indexOf('__c') !== -1)) {
+    for (let i = 0; i < res.sobjects.length; i++) {
+      let object = res.sobjects[i];
 
-          // if (config.excludeManagedPackage) {
-          //   if ((object.name.split('__').length - 1 < 2))
-          //     config.objects.push(object.name);
-          // } else {
-          //   config.objects.push(object.name);
-          // }
-        }
+      // If the sObject is a real custom object
+      if (object.custom && (object.name.indexOf('__c') !== -1)) {
+
+        // if (config.excludeManagedPackage) {
+        //   if ((object.name.split('__').length - 1 < 2))
+        //     config.objects.push(object.name);
+        // } else {
+        //   config.objects.push(object.name);
+        // }
+        objects.push(object.name);
       }
-    });
+    }
+    return objects;
+    
   }
 
 }
